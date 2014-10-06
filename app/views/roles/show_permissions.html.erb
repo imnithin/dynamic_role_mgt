@@ -1,0 +1,23 @@
+<h2><%= @role.name %></h2>
+
+<%= form_tag set_permissions_role_path, method: :post do %>
+
+  <% PermissionClass.all.each_with_index do |p_c,i| %>
+    <h4>
+      <th><%= p_c.name %></th>
+    </h4>
+
+    <% p_c.permission_methods.each_with_index do |p|%>
+
+      <input type="checkbox" name="permissions[]" value="<%= p.id %>"
+             <%= PermittedRole.exists?(role_id: @role.id, permission_method_id: p.id) ? 'checked' : "" %>></input>
+      <%= p.name %><br/>
+
+    <%end%>
+
+  <%end%>
+
+  <br/>
+  <%= submit_tag "Submit", :class=>"btn btn-sm btn-primary" %>
+  <%= link_to 'Back', roles_path, :class=>"btn btn-sm btn-primary" %>
+<%end%>

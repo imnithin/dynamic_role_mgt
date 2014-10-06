@@ -1,0 +1,8 @@
+Name | email | Role<br/>
+<% for user in @users %>
+<%= user.name %>
+<%= user.email %>
+<%= user.role.name %>
+<%= link_to "edit", edit_user_user_path(:id=> user.id) %>
+<%= link_to "delete", user_path(:id=> user.id), method: 'delete', confirm: 'Are you sure?' %><br/>
+<% end %>

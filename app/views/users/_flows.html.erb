@@ -1,0 +1,24 @@
+<div class="dashboard_flow">
+  <h4>Flow Details</h4>
+  <div class="flow_details_inner">
+    <div class="flow_details_fields bg_clr fh_header">
+      <span class="fd01">Name</span>
+      <span class="fd02">Node Count</span>
+      <span class="fd03">Status</span>
+    </div>
+    <% for flow in @flows %>
+    <div class="flow_details_fields <%= cycle('bg_clr', '') -%>">
+      <span class="fd01"><%= flow.name %></span>
+      <span class="fd02"><%= flow.nodes.count %></span>
+      <span class="fd03 task_completed">Completed</span>
+      <span class="fd03 task_pending">Pending</span>
+    </div>
+    <% end %>
+    <div class="flow_navigation">
+      <%= link_to "List All Flows", flows_path , :class => "list_flows" %>
+      <ul>
+      <%= will_paginate @flows, :page_links => false %>
+      </ul>
+    </div>
+  </div>
+</div>   

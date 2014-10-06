@@ -1,0 +1,53 @@
+  <div class="main_layout reset_password">
+    <div class="main_layout_inner">
+      <div class="signin_wrap">
+        <p><%= image_tag "/assets/logo.png", alt: "logo"  %></p>
+        <h2>Forgot your password?</h2>
+        <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+        <%#= devise_error_messages! %>
+        <div class="signin_box">
+          <div class="signin_txtbox">
+            <%= f.email_field :email, autofocus: true,  class: "txtbox_field field_email",  placeholder: "Email" %>
+            <label class="error" for="user_email"><%= validation_errors resource.errors['email'] %></label>
+          </div>
+          <div class="signin_txtbox signin_btn">
+            <%= f.submit "Send me reset password instructions", class: "txtbox_field" %>
+          </div>
+          <div class="signin_txtbox signin_btn back_to_login">
+            <%=  link_to "Back to login", new_user_session_path, class: "txtbox_field" %>
+          </div>
+        </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="footer_layout">
+      <div class="footer_layout_inner">
+        <span class="copyrights">&copy; Copyright 2014, GrupOfis.  All Rights Reserved.</span>
+        <span class="poweredBy">
+          <p>Powered by</p>
+          <p><%= image_tag "/assets/cc_icon.png", alt: "color-cuboid"  %></p>
+          <p><%= link_to "ColorCuboid Designs", "http://colorcuboid.com/", target: true  %></p>
+        </span>
+      </div>
+    </div>
+    
+  </div>
+
+  <script type="text/javascript">
+    $("#new_user").validate({
+      rules:{
+        'user[email]':
+        {
+          required: true,
+          email: true
+        }
+      },
+      messages: {
+        'user[email]':
+        {
+          required: "Please enter your email"
+        }
+      }
+    });
+  </script>

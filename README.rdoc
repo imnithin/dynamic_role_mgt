@@ -1,0 +1,18 @@
+General Info.
+
+Access the staging app. - http://monitor.carmatec.com:3018/
+
+Admin login - admin@groupofis.com
+      pwd - admin123
+
+ WORKFLOW_URL in production.rb to be set before going to live.
+
+App. Info.
+
+rake db:setup(runs seed file as well and creates an Admin and a Role entry in Rails.env DB)
+
+rake task - rake workflow:dynamic_role_management
+
+Keep in mind:
+
+Follow naming conventions, DRY, use comments.

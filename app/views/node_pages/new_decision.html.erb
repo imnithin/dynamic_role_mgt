@@ -1,0 +1,30 @@
+<h2>Decision Page</h2>
+<%= form_tag save_decision_node_pages_path %>
+<table>
+	<tr>
+		<td>Criteria</td>
+		<td><%= text_field 'decision', 'criteria' %></td>
+	</tr>
+	<tr>
+		<td>Value_1</td>
+		<td><%= text_field 'decision', 'value1' %></td>
+	</tr>
+	<tr>
+		<td>Value_2</td>
+		<td><%= text_field 'decision', 'value2' %></td>
+	</tr>
+	<tr>
+		<td>Value_3</td>
+		<td><%= text_field 'decision', 'value3' %></td>
+	</tr>
+	<tr>
+		<td>Type</td>
+		<td><%= select 'decision', 'type', ["Manual", "Auto"], :prompt => true %></td>
+	</tr>
+	<tr>
+		<td>SQL</td>
+		<td><%= text_field 'dec', 'sql' %></td>
+	</tr>
+	<%= hidden_field 'decision', 'node_id', :value => params[:node] %>
+</table>
+<%= submit_tag 'Submit' %>

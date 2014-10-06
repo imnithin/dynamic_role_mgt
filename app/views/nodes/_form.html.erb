@@ -1,0 +1,91 @@
+
+<script type="text/javascript">
+  $(function($) {
+    $("#node_flow_id").change(function() {
+        $.ajax({
+    url: "filter_nodes",
+    type: "post",
+    data: {flow: this.value},
+    success: function(data) {
+      fname=data.split('"')
+       jQuery("#flow_div").html(data);
+       jQuery("#flow_div1").html(data.replace(fname[1],'node_node_id_task_starter'));
+      }
+    });
+    });
+});
+</script>
+
+
+<% @flow = Flow.all %>
+<% @roles = Role.where('name != ?','admin') %>
+<%= form_for(@node) do |f| %>
+  <% if @node.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@node.errors.count, "error") %> prohibited this node from being saved:</h2>
+
+      <ul>
+      <% @node.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= form_tag :action=>'create' %>
+<table>
+  <tr>
+    <td>Node Name</td>
+    <td><%= text_field 'node', 'name' %></td>
+  </tr>
+  <tr>
+    <td>Flow Name</td>
+    <% if @edit==1 %>
+      <td><%= collection_select 'node', 'flow_id', @flow, 'id', 'name', {:selected => @node.flow.id} %></td>
+    <% else %>
+      <td><%= collection_select 'node', 'flow_id', @flow, 'id', 'name', {:selected => @flow.try(:last).try(:id)} %></td>
+     <% end %>
+  </tr>
+  <tr>
+    <td>Parent Node Name</td>
+    <% if @edit==1 %>
+      <td><div id="flow_div"><%= render :partial => 'filter_nodes', :locals => {:@f => @node.flow, :@fname => "node_id_parent", :@edit=>1, :@node=>@node} %></div></td>
+    <% else %>
+      <td><div id="flow_div"><%= render :partial => 'filter_nodes', :locals => {:@f => Flow.last, :@fname => "node_id_parent"} %></div></td>
+    <% end %>
+  </tr>
+  <tr>
+    <td>Task Duration</td>
+    <td><%= text_field 'node', 'duration' %></td>
+  </tr>
+  <tr>
+    <td>Task Starter Node Name</td>
+    <% if @edit==1 %>
+      <td><div id="flow_div1"><%= render :partial => 'filter_nodes', :locals => {:@f => @node.flow, :@fname => "node_id_task_starter" } %></div></td>
+    <% else %>
+      <td><div id="flow_div1"><%= render :partial => 'filter_nodes', :locals => {:@f => Flow.last, :@fname => "node_id_task_starter" } %></div></td>
+    <% end %>
+  </tr>
+  <tr id="parent_decision_value" style="display: none;" >
+    <td>Parent Decision Value</td>
+    <td><%= radio_button 'node', 'parent_value', 'YES' %>Valid
+      <%= radio_button 'node', 'parent_value', 'checked' %>In-Valid
+    </td>
+  </tr>
+  <tr>
+    <td>Node Type</td>
+    <td><%= select 'node', 'node_type', DataEntry::NODE_TYPES, {:prompt => true} %></td>
+  </tr>
+  <tr>
+    <td>Assigned User Role</td>
+    <td><%= collection_select 'node', 'role_id', @roles, 'id', 'name' %></td>
+  </tr>
+  <tr>
+    <td>Select SQL</td>
+    <td><%= text_field 'node', 'sql' %></td>
+  </tr>
+</table>
+    <%= f.submit %>
+  </div>
+<% end %>

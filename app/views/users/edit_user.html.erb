@@ -1,0 +1,16 @@
+<h2>Edit</h2>
+<%= form_for(@user, url: update_user_user_path(@user.id)) do |f| %>
+<%= @user.errors.full_messages.first if @user.errors %>
+
+<div><%= f.label :name %><br />
+  <%= f.text_field :name %></div>
+
+  <div><%= f.label :email %><br />
+  <%= f.email_field :email, autofocus: true %></div>
+
+   <div><%= f.label :role_id %><br />
+  <%= f.select(:role_id, @roles.map{|r| [r.name, r.id]}) %></div>
+
+  <div><%= f.submit "Update" %></div>
+<% end %>
+

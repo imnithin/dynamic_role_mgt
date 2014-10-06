@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+<table>
+	<tr>
+		<th>Node Name</th>
+    	<th>Flow Name</th>
+    	<th>Duration</th>
+    	<th>Node Type</th>
+    	<th>Role</th>
+    	<th></th>
+	</tr>
+	<tr>
+		<td><%= @node.name %></td>
+    	<td><%= @node.flow.name %></td>
+    	<td><%= @node.duration %></td>
+    	<td><%= @node.node_type %></td>
+    	<td><%= @node.role.name %></td>
+    	<td><%= link_to 'Edit', edit_node_path(@node) %> |
+			<%= link_to 'Back', nodes_path %></td>
+	</tr>
+</table>

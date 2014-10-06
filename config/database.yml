@@ -1,0 +1,15 @@
+development:
+  adapter:  mysql2
+  host:  
+  database:  workflow_development
+  username:  root
+  password:  qazplm123
+
+
+
+external:
+  adapter:  mysql2
+  host:  
+  database:  workflow_development
+  username:  postgres
+  password:  postgres

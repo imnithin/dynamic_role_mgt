@@ -1,0 +1,233 @@
+  <%= form_tag :action=>'save_db_config' %>
+  <div class="main_layout">
+
+    <div class="main_layout_header">
+    <div class="main_layout_header_inner">
+      <span class="logo_wrap">
+        <a href="">
+          <%= image_tag("/assets/logo.png", alt: "logo") %>
+        </a>
+      </span>
+      <span class="logout_wrap">
+        <p>Welcome</p>
+        <p class="name_highlights"><%= current_user.name %></p>                    
+        <div class="logout_wrapBox">
+          <%= link_to 'Edit My Account', edit_user_registration_path, class: "logout_btn"  %>
+            <%= link_to "Log out", destroy_user_session_path, class: "logout_btn", :method => :delete  %>
+            </div>
+          </span>
+        </div> 
+      </div> 
+
+      <div class="top_menu_wrap">
+        <div class="top_menu_inner_view">
+          <ul>
+            <div class="menu_sections">
+              <li>
+                <%= link_to(root_path, class: "Selected_view") do %>
+                    <p><%= image_tag("/assets/dashboard.png", alt: "dashboard") %></p>
+                    <h4>Dashboard</h4>
+                  <% end %>
+                </li>
+                <li>
+                  <a href="#">
+                    <p><%= image_tag("/assets/user_mgnt.png", alt: "User Management") %></p>
+                    <h4>User Management</h4>
+                  </a>    
+                  <div class="sub_menus" style="display:none;">
+                    <div class="sub_menus_toparrows">
+                    </div>
+                    <div class="sub_menus_inner">
+                      <ul>
+                        <li>
+                          <a href="#">
+                            <span class="icon_img"><%= image_tag("/assets/icon01.jpg", :alt => "icon") %></span>
+                            <span>Manage User</span>
+                          </a>
+                        </li>
+                        <li>
+                          <%= link_to(new_user_registration_path) do %>
+                            <span class="icon_img"><%= image_tag("/assets/icon02.jpg", :alt => "icon") %></span> 
+                            <span>Add User</span>
+                          <% end %>
+                        </li>
+                        <li class="border_remove">
+                          <%= link_to(list_users_users_path) do %>
+                            <span class="icon_img"><%= image_tag("/assets/icon03.jpg", :alt => "icon") %></span> 
+                            <span>User Details</span>
+                          <% end %> 
+                        </li>
+                      </ul>
+                    </div>
+                  </div>                    
+                </li>
+              </div>
+              <li>
+                <a href="#">
+                  <p><%= image_tag("/assets/role_mgnt.png", :alt => "Role Management") %></p>
+                  <h4>Role Management</h4>
+                </a>
+                <div class="sub_menus" style="display:none;">
+                  <div class="sub_menus_toparrows">
+                  </div>
+                  <div class="sub_menus_inner">
+                    <ul>
+                      <li>
+                        <%= link_to(new_role_path) do %>
+                          <span class="icon_img"><%= image_tag("/assets/icon02.jpg", :alt => "icon") %></span> 
+                          <span>Add Role</span>
+                        <% end %>
+                      </li>
+                      <li class="border_remove">
+                        <%= link_to(roles_path) do %>
+                          <span class="icon_img"><%= image_tag("/assets/icon03.jpg", :alt => "icon") %></span> 
+                          <span>List Roles</span>
+                        <% end %> 
+                      </li>
+                    </ul>
+                  </div>
+                </div> 
+              </li>
+              <li>
+                <a href="#">
+                  <p><%= image_tag("/assets/workflow_mgnt.png", :alt => "Workflow Management") %></p>
+                  <h4>Workflow Management</h4>
+                </a>
+                <div class="sub_menus" style="display:none;">
+                  <div class="sub_menus_toparrows">
+                  </div>
+                  <div class="sub_menus_inner">
+                    <ul>
+                      <li>
+                        <%= link_to(new_flow_path) do %>
+                          <span class="icon_img"><%= image_tag("/assets/icon02.jpg", :alt => "icon") %></span> 
+                          <span>Add Flow</span>
+                        <% end %>
+                      </li>
+                      <li>
+                        <%= link_to(new_node_path) do %>
+                          <span class="icon_img"><%= image_tag("/assets/icon02.jpg", :alt => "icon") %></span> 
+                          <span>Add Node</span>
+                        <% end %>
+                      </li>
+                      <li class="border_remove">
+                        <%= link_to(nodes_path) do %>
+                          <span class="icon_img"><%= image_tag("/assets/icon03.jpg", :alt => "icon") %></span> 
+                          <span>List Nodes</span>
+                        <% end %>
+                      </li>
+                    </ul>
+                  </div>
+                </div> 
+              </li>
+              <li>
+                <%= link_to(database_settings_users_path) do %>
+                  <p><%= image_tag("/assets/database_config.png", :alt => "Database Configuration") %></p>
+                  <h4>Database Configuration</h4>
+                <% end %>
+              </li>
+            </ul>
+            <div class="white_space"></div>
+          </div>           
+        </div>
+
+      <div class="main_layout_inner shadow_sideview">             
+            <div class="middle_layout">
+              <div class="middle_inner_view">
+                  <h2>DB Configuration</h2>
+                    <div class="db_selections">
+                      <div class="db_selections_fields">
+                        <% a = @line_wise.at(1).split(":") %>
+                          <div class="db_title"><%= a[0].strip.capitalize %></div>
+                            <div class="styled-select">
+                              <%= select_tag "adapter", options_for_select([ "sqlserver", "mysql2", "oracle_enhanced","postgresql" ], :selected => a[1].strip), :class=>"css-select" %>
+                           </div>
+                        </div>
+                        <div class="db_selections_fields">
+                          <% h = @line_wise.at(2).split(":") %>
+                          <div class="db_title"><%= h[0].strip.capitalize %></div>
+                            <div class="radio-select">
+                              <% if h[1].strip == "localhost" %>
+                              <span class="radio_btn01">  
+                                <%= radio_button_tag "host", h[1].strip, true, :class => "css-checkbox", :id => "radio4" %>
+                                <label for="radio4" class="css-label"><%= h[1].strip %></label>
+                              </span>  
+                                <%= radio_button_tag "host", "ip", false, :class => "css-checkbox", :id => "radio5" %>
+                                <label for="radio5" class="css-label"><%= text_field_tag "host_ipentered", "", :class => "radio_txt" %></label>
+                                <%else%>
+                  <%= radio_button_tag "host", "localhost", false, :class => "css-checkbox", :id => "radio4" %>
+                  <label for="radio4" class="css-label">localhost</label>
+                  <%= radio_button_tag "host", h[1].strip, true, :class => "css-checkbox", :id => "radio5" %>
+                  <label for="radio5" class="css-label"><%= text_field_tag "host_ip", h[1].strip, :class => "radio_txt" %></label>
+                <%end%>
+                           </div>
+                        </div>
+                    </div>
+                    <div class="ext_int_wrap">
+                       <div class="ext_int_box">
+                          <div class="db_field_box">
+                                <%= image_tag("/assets/icon_02.png", :alt => "icon") %>
+                              <h3>External</h3>
+                              <% ext = @line_wise.split("") %>
+              <% ext[-1].each do |line| %>
+                <% l = line.split(":").map(&:strip) %>
+                <% if (l[1] && l[0]!="adapter" && l[0]!="host") %>
+                  <div class="db_field_box"><p><%= l[0].capitalize %></p></div>
+                  <%= text_field_tag "#{@db}#{[l[0]]}", l[1], :class=>"db_txtbox", :required => true %>
+                <%elsif l[0]!="adapter" && l[0]!="host"%>
+                  <% @db = l[0] %>
+                <% end %>
+              <% end %>
+                            </div>                             
+                         </div>
+                         <div class="ext_int_box internal_Box">
+                          <div class="db_field_box">
+                                <%= image_tag("/assets/icon_03.png", :alt => "icon") %>
+                              <h3>Internal</h3>
+                            <% ext = @line_wise.split("") %>
+              <% ext[0].each do |line| %>
+                <% l = line.split(":").map(&:strip) %>
+                <% if (l[1] && l[0]!="adapter" && l[0]!="host") %>
+                  <div class="db_field_box"><p><%= l[0].capitalize %></p></div>
+                  <%= text_field_tag "#{@db}#{[l[0]]}", l[1], :class=>"db_txtbox", :required => true %>
+                <%elsif l[0]!="adapter" && l[0]!="host"%>
+                  <% @db=l[0] %>
+                <% end %>
+              <% end %>
+                         </div>
+                    </div>
+                    <div class="ext_int_buttons">
+                      <%= submit_tag 'Save', :class => "db_btns db_save",  data: { confirm: "Are you sure?" } %>
+          <%= link_to "Cancel", root_path, class: "db_btns db_cancel" %>                                
+                    </div>
+                </div>              
+            </div>         
+        </div>
+        <div class="footer_layout">
+          <div class="footer_layout_inner">
+            <span class="copyrights">&copy; Copyright 2014, GrupOfis.  All Rights Reserved.</span>
+            <span class="poweredBy">
+              <p>Powered by</p>
+              <p><%= image_tag "/assets/cc_icon.png", alt: "color-cuboid"  %></p>
+              <p><%= link_to "ColorCuboid Designs", "http://colorcuboid.com/", target: true  %></p>
+            </span>
+          </div>
+        </div>
+               </div> 
+    
+    <script type="text/javascript" src="common/js/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function(){    
+     
+     $('.top_menu_inner_view li').hover(
+      function () {
+        $(this).find('.sub_menus').show();
+      }, 
+       function () {
+        $(this).find('.sub_menus').hide();
+      }
+     ); 
+    });
+   </script>
+</body>
+</html>

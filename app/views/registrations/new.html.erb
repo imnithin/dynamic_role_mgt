@@ -1,0 +1,41 @@
+<h2>Sign up</h2>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<%#= devise_error_messages! %>
+<br />
+<%= f.label :name %>
+<%= f.text_field :name %>
+
+<%= f.label :email %>
+<%= f.email_field :email, autofocus: true %>
+
+<%= f.label :role %>
+<%= f.select(:role_id, @roles.map { |m| [m.name,m.id] }, {:include_blank => 'Select'}) %><br/>
+
+<%= f.submit "Create new User" %>
+<% end %>
+
+<%= link_to "Back", root_path %>
+
+ <script type="text/javascript">
+// $("#new_user").validate({
+// rules:{
+// 	'user[name]':{
+// 		required:true
+// 	},
+// 	'user[email]':{
+// 		required:true,
+// 		email:true
+// 	}
+// },
+
+// messages:{
+// 	'user[name]':{
+// 		required:'Please enter name'
+// 	},
+// 	'user[email]':{
+// 		required:true,
+// 		email:true
+// 	}
+// }
+// });
+</script>

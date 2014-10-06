@@ -1,0 +1,208 @@
+<div class="main_layout">
+
+  <div class="main_layout_header">
+    <div class="main_layout_header_inner">
+      <span class="logo_wrap">
+        <a href="">
+          <%= image_tag("/assets/logo.png", alt: "logo") %>
+        </a>
+      </span>
+      <span class="logout_wrap">
+        <p>Welcome</p>
+        <p class="name_highlights"><%= current_user.name %></p>                    
+        <div class="logout_wrapBox">
+          <%= link_to 'Edit My Account', edit_user_registration_path, class: "logout_btn"  %>
+            <%= link_to "Log out", destroy_user_session_path, class: "logout_btn", :method => :delete  %>
+            </div>
+          </span>
+        </div> 
+      </div> 
+
+      <div class="top_menu_wrap">
+        <div class="top_menu_inner_view">
+          <ul>
+            <div class="menu_sections">
+              <li>
+                <%= link_to(root_path, class: "Selected_view") do %>
+                    <p><%= image_tag("/assets/dashboard.png", alt: "dashboard") %></p>
+                    <h4>Dashboard</h4>
+                  <% end %>
+                </li>
+
+                <% if current_user.admin? %>
+                  <li>
+                    <a href="#">
+                      <p><%= image_tag("/assets/user_mgnt.png", alt: "User Management") %></p>
+                      <h4>User Management</h4>
+                    </a>    
+                    <div class="sub_menus" style="display:none;">
+                      <div class="sub_menus_toparrows">
+                      </div>
+                      <div class="sub_menus_inner">
+                        <ul>
+                          <li>
+                            <a href="#">
+                              <span class="icon_img"><%= image_tag("/assets/icon01.jpg", :alt => "icon") %></span>
+                              <span>Manage User</span>
+                            </a>
+                          </li>
+                          <li>
+                            <%= link_to(new_user_registration_path) do %>
+                              <span class="icon_img"><%= image_tag("/assets/icon02.jpg", :alt => "icon") %></span> 
+                              <span>Add User</span>
+                            <% end %>
+                          </li>
+                          <li class="border_remove">
+                            <%= link_to(list_users_users_path) do %>
+                              <span class="icon_img"><%= image_tag("/assets/icon03.jpg", :alt => "icon") %></span> 
+                              <span>User Details</span>
+                            <% end %> 
+                          </li>
+                        </ul>
+                      </div>
+                    </div>                    
+                  </li>
+                <% end %>
+
+              </div>
+              <li>
+                <a href="#">
+                  <p><%= image_tag("/assets/role_mgnt.png", :alt => "Role Management") %></p>
+                  <h4>Role Management</h4>
+                </a>
+                <div class="sub_menus" style="display:none;">
+                  <div class="sub_menus_toparrows">
+                  </div>
+                  <div class="sub_menus_inner">
+                    <ul>
+                      <li>
+                        <%= link_to(new_role_path) do %>
+                          <span class="icon_img"><%= image_tag("/assets/icon02.jpg", :alt => "icon") %></span> 
+                          <span>Add Role</span>
+                        <% end %>
+                      </li>
+                      <li class="border_remove">
+                        <%= link_to(roles_path) do %>
+                          <span class="icon_img"><%= image_tag("/assets/icon03.jpg", :alt => "icon") %></span> 
+                          <span>List Roles</span>
+                        <% end %> 
+                      </li>
+                    </ul>
+                  </div>
+                </div> 
+              </li>
+              <li>
+                <a href="#">
+                  <p><%= image_tag("/assets/workflow_mgnt.png", :alt => "Workflow Management") %></p>
+                  <h4>Workflow Management</h4>
+                </a>
+                <div class="sub_menus" style="display:none;">
+                  <div class="sub_menus_toparrows">
+                  </div>
+                  <div class="sub_menus_inner">
+                    <ul>
+                      <li>
+                        <%= link_to(new_flow_path) do %>
+                          <span class="icon_img"><%= image_tag("/assets/icon02.jpg", :alt => "icon") %></span> 
+                          <span>Add Flow</span>
+                        <% end %>
+                      </li>
+                      <li>
+                        <%= link_to(new_node_path) do %>
+                          <span class="icon_img"><%= image_tag("/assets/icon02.jpg", :alt => "icon") %></span> 
+                          <span>Add Node</span>
+                        <% end %>
+                      </li>
+                      <li class="border_remove">
+                        <%= link_to(nodes_path) do %>
+                          <span class="icon_img"><%= image_tag("/assets/icon03.jpg", :alt => "icon") %></span> 
+                          <span>List Nodes</span>
+                        <% end %>
+                      </li>
+                    </ul>
+                  </div>
+                </div> 
+              </li>
+              <li>
+                <%= link_to(show_db_settings_users_path) do %>
+                  <p><%= image_tag("/assets/database_config.png", :alt => "Database Configuration") %></p>
+                  <h4>Database Configuration</h4>
+                <% end %>
+              </li>
+            </ul>
+            <div class="white_space"></div>
+          </div>           
+        </div>
+
+        <div class="main_layout_inner shadow_sideview">             
+          <div class="middle_layout">
+            <div class="middle_inner_view">
+              <div class="welcome_msg_wrap">
+                <h2>Welcome to GrupOfis Admin Dashboard</h2>
+                <h4>GrupOfis quisquam est qui dolorem ipsum quia</h4>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+              </div> 
+
+              <div class="dashboard_details_wrap">
+
+                <div id="flows" >
+                  <%= render 'flows' %>
+                </div>
+
+                <div class="dashboard_summary">
+                  <h4>Summary</h4>
+                  <div class="summary_details">
+                    <div class="summary_details_fields sd_users">
+                      <span class="task_percentege">1298</span>
+                      <span class="sd_task_title">Users</span>
+                    </div>
+                    <div class="summary_details_fields sd_assigned">
+                      <span class="task_percentege">156</span>
+                      <span class="sd_task_title">Assigned</span>
+                    </div>
+                    <div class="summary_details_fields sd_completed">
+                      <span class="task_percentege">83</span>
+                      <span class="sd_task_title">Completed</span>
+                    </div>
+                    <div class="summary_details_fields sd_progress">
+                      <span class="task_percentege">56</span>
+                      <span class="sd_task_title">In Progress</span>
+                    </div>
+                    <div class="summary_details_fields sd_pending">
+                      <span class="task_percentege">17</span>
+                      <span class="sd_task_title">Pending</span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>         
+
+            </div>              
+          </div>         
+        </div>         
+
+        <div class="footer_layout">
+          <div class="footer_layout_inner">
+            <span class="copyrights">&copy; Copyright 2014, GrupOfis.  All Rights Reserved.</span>
+            <span class="poweredBy">
+              <p>Powered by</p>
+              <p><%= image_tag "/assets/cc_icon.png", alt: "color-cuboid"  %></p>
+              <p><%= link_to "ColorCuboid Designs", "http://colorcuboid.com/", target: true  %></p>
+            </span>
+          </div>
+        </div>
+
+      </div> 
+
+      <script type="text/javascript">
+        $(document).ready(function(){    
+          $('.top_menu_inner_view li').hover(
+          function () {
+            $(this).find('.sub_menus').show();
+          }, 
+          function () {
+            $(this).find('.sub_menus').hide();
+          }
+        );  
+        });
+      </script>

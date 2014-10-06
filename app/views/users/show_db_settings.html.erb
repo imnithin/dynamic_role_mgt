@@ -1,0 +1,76 @@
+<%= form_tag 'save_db_settings' %>
+<div class="main_layout"> 
+ 	<div class="main_layout_inner shadow_sideview">          	  
+    <div class="middle_layout">
+    	<div class="middle_inner_view">
+       	<h2>DB Configuration</h2>
+        <div class="db_selections">
+        	<div class="db_selections_fields">
+        		<% a = @line_wise.at(1).split(":") %>
+           	<div class="db_title"><%= a[0].strip.capitalize %></div>
+              <div class="styled-select">
+              	<%= select_tag "adapter", options_for_select([ "sqlserver", "mysql2", "oracle_enhanced","postgresql" ], :selected => a[1].strip), :class=>"css-select" %>
+                </div>
+          </div>
+          <div class="db_selections_fields">
+            <% h = @line_wise.at(2).split(":") %>
+            <div class="db_title"><%= h[0].strip.capitalize %></div>
+              <div class="radio-select">
+                <% if h[1].strip == "localhost" %>
+                  <span class="radio_btn01">
+								    <%= radio_button_tag "host", h[1].strip, '', :class => "css-checkbox", :id => "radio4" %>
+								    <label for="radio4" class="css-label"><%= h[1].strip %></label>
+								  </span>  
+									  <%= radio_button_tag "host", "ip", '', :class => "css-checkbox", :id => "radio5" %>
+									  <label for="radio5" class="css-label"><%= text_field_tag "host_ipentered", "", :class => "radio_txt" %></label>
+								<%else%>
+									<%= radio_button_tag "host", "localhost", '', :class => "css-checkbox", :id => "radio4" %>
+									<label for="radio4" class="css-label">localhost</label>
+									<%= radio_button_tag "host", h[1].strip, true, :class => "css-checkbox", :id => "radio5" %>
+									<label for="radio5" class="css-label"><%= text_field_tag "host_ip", h[1].strip, :class => "radio_txt" %></label>
+								<%end%>
+              </div>
+          </div>
+        </div>
+        <div class="ext_int_wrap">
+          <div class="ext_int_box">
+            <div class="db_field_box">
+              <%= image_tag("/assets/icon_02.png", :alt => "icon") %>
+              <h3>External</h3>
+              <% ext = @line_wise.split("") %>
+              <% ext[-1].each do |line| %>
+           	    <% l = line.split(":").map(&:strip) %>
+								<% if (l[1] && l[0]!="adapter" && l[0]!="host") %>
+									<div class="db_field_box"><p><%= l[0].capitalize %></p></div>
+									<%= text_field_tag "#{@db}#{[l[0]]}", l[1], :class=>"db_txtbox" %>
+								<%elsif l[0]!="adapter" && l[0]!="host"%>
+									<% @db = l[0] %>
+								<% end %>
+  						<% end %>
+            </div>
+          </div>
+          <div class="ext_int_box internal_Box">
+            <div class="db_field_box">
+              <%= image_tag("/assets/icon_03.png", :alt => "icon") %>
+              <h3>Internal</h3>
+              <% ext = @line_wise.split("") %>
+              <% ext[0].each do |line| %>
+           	    <% l = line.split(":").map(&:strip) %>
+								<% if (l[1] && l[0]!="adapter" && l[0]!="host") %>
+									<div class="db_field_box"><p><%= l[0].capitalize %></p></div>
+									<%= text_field_tag "#{@db}#{[l[0]]}", l[1], :class=>"db_txtbox" %>
+								<%elsif l[0]!="adapter" && l[0]!="host"%>
+									<% @db=l[0] %>
+								<% end %>
+  						<% end %>
+            </div>
+          </div>
+        </div>
+        <div class="ext_int_buttons">
+          <%= submit_tag 'Save', :class => "db_btns db_save",  data: { confirm: "Are you sure?" } %>
+          <%= link_to "Cancel", root_path, class: "db_btns db_cancel" %>
+        </div>
+      </div>          	  
+    </div>  	     
+  </div>
+</div> 

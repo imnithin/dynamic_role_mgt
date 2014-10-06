@@ -1,0 +1,5 @@
+<% @task.each do|t|%>
+<ul>
+	<li><%= link_to t.flow.name+" / "+t.name, new_task_node_pages_path(:id => t.id) %></li>
+</ul>
+<% end %>

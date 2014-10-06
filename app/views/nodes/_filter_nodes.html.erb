@@ -1,0 +1,21 @@
+<script type="text/javascript">
+  $(function($) {
+    $("#node_node_id_parent").change(function() {
+        $.ajax({
+    		url: "filter_decision_value",
+    		type: "post",
+    		data: {node_id: this.value}
+    	});
+    });
+});
+</script>
+
+<% if ((@f.blank?) || (@edit==1 && @node.node_id_parent.blank?)) %>
+	<%= select 'node', 'node_id_parent', '', {:prompt => true} %>
+<% else %>
+    <% if @edit==1 && !@node.node_id_parent.blank? %>
+        <%= collection_select 'node', 'node_id_parent', @f.nodes.where("id != ?", @node.id), 'id', 'name', {:selected => @f.nodes} %>
+    <% else %>
+        <%= collection_select 'node', 'node_id_parent', @f.nodes, 'id', 'name', {:prompt => true} %>
+    <% end %>
+<% end %>

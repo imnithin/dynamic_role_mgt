@@ -1,0 +1,59 @@
+<script type="text/javascript">
+$(document).ready(function(){
+$(".add_more_fields").click(function(){
+	var l=$("#line").html();
+	var t=$("#repeat").html();
+	$("#repeat").append(t);
+	});
+});
+</script>
+<h2>Data Entry Page</h2>
+<%= form_tag save_data_entry_node_pages_path %>
+<table id="repeat">
+	<tr>
+		<td>Flow Name</td>
+		<td><%= collection_select 'dataentry', 'flow_id', Flow.all, 'id', 'name', {:selected => @node.flow_id}, :name => "dataentry[][flow_id]" %></td>
+		<td><div class="add_more_fields">Add Field</div></td>
+	</tr>
+	<tr>
+		<td>Node Name</td>
+		<td><%= collection_select 'data_entry', 'node_id', Node.where("flow_id in (?)", @node.flow.id), 'id', 'name', {:selected => @node.id}, :name => "data_entry[][node_id]" %></td>
+	</tr>
+	<tr>
+		<td>Field Name</td>
+		<td><%= text_field 'data_entry', 'name', :name => 'data_entry[][name]' %></td>
+	</tr>
+	<tr>
+		<td>Field Type</td>
+		<td><%= select 'data_entry', 'field_type', ["Text", "Number", "Currency", "Email Address", "url", "Date", "Drop-down", "Search box", "File", "Image"], {:prompt => true}, :name => "data_entry[][field_type]" %></td>
+	</tr>
+	<tr>
+		<td>Position on Page</td>
+		<td><%= select 'data_entry', 'location', ["Top", "Side", "Body"], {:prompt => true}, :name => "data_entry[][location]" %></td>
+	</tr>
+	<tr>
+		<td>Rank on Page</td>
+		<td><%= text_field 'data_entry', 'rank', :name => 'data_entry[][rank]' %></td>
+	</tr>
+	<tr>
+		<td>Must Fill</td>
+		<td><%= select 'data_entry', 'must_fill', ["Yes", "No"], {:prompt => true}, :name => "data_entry[][must_fill]" %></td>
+	</tr>
+	<tr>
+		<td>Multi</td>
+		<td><%= select 'data_entry', 'multi', ["Yes", "No"], {:prompt => true}, :name => "data_entry[][multi]" %></td>	
+	</tr>
+	<tr>
+		<td>View Permission User Role</td>
+		<td><%= collection_select 'data_entry', 'role_id', Role.where("name != ?", "Admin"), 'id', 'name', {}, :name => "data_entry[][role_id]" %></td>
+	</tr>
+	<tr>
+		<td>Update DB Field</td>
+		<td><%= text_field 'data_entry', 'update_db', :name => 'data_entry[][update_db]' %></td>
+	</tr>
+	<tr>
+		<td>Select DB Field</td>
+		<td><%= text_field 'data_entry', 'select_db', :name => 'data_entry[][select_db]' %></td>
+	</tr>
+</table>
+<%= submit_tag 'Submit' %>

@@ -1,0 +1,57 @@
+<div class="main_layout">
+  <div class="main_layout_inner">
+    <div class="signin_wrap">
+
+      <p><%= image_tag "/assets/logo.png", alt: "logo"  %></p>
+      <h2>Sign in to continue to GrupOfis</h2>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="signin_box">
+        <div class="signin_txtbox">
+          <%= f.email_field :email, class: "txtbox_field field_email", autofocus: true, placeholder: "Email" %>
+        </div>
+        <div class="signin_txtbox">
+          <%= f.password_field :password, class: "txtbox_field", autocomplete: "off", placeholder: "Password" %>
+        </div>
+        <div class="signin_txtbox signin_btn">
+          <%= f.submit "Sign in", class: "txtbox_field" %>
+        </div>
+        <div class="signin_bottom">
+          <span class="keep_me">
+            <% if devise_mapping.rememberable? -%>
+            <%= f.check_box :remember_me, :class=>"css-checkbox", :id=>"checkbox1" %>
+            <label for="checkbox1" name="checkbox1_lbl" class="css-label lite-gray-check">Keep me on signed in</label>
+            <% end -%>
+          </span>
+          <%= link_to "Forgot Password?", new_user_password_path, class: "forget_pwd"%>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+ $("#new_user").validate({
+  rules:{
+    'user[email]':
+    {
+      required: true,
+      email: true
+    },
+    'user[password]':
+    {
+      required: true
+    }
+  },
+  messages: {
+    'user[email]':
+    {
+      required: "Please enter your email"
+    },
+    'user[password]':
+    {
+      required:"Please enter password"
+    }
+  }
+});
+</script>

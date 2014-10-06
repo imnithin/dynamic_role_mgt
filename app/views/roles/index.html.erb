@@ -1,0 +1,11 @@
+<% @roles.each do |role| %>
+<%= role.name %>
+<%= link_to "show", role_path(role.id) %>
+<% unless role.users.present? %>
+<%= link_to "delete", role_path(role.id), method: 'delete', confirm: "Are you sure?" %><br/>
+<% else %>
+<strike><%= "delete" %></strike><br/>
+<% end %>
+<% end %><br/>
+<%= link_to "New Role", new_role_path %><br/>
+<%= link_to "Back", root_path %>

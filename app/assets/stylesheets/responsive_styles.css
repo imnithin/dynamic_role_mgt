@@ -1,0 +1,438 @@
+@charset "utf-8";
+
+/* CSS Document */
+@media screen and (max-width: 1200px) {
+.main_layout_inner {
+	width: 94%;
+}
+.footer_layout_inner {
+	width: 100%;
+}
+.footer_layout_inner span {
+	padding-right: 3%;
+	padding-left: 3%;
+}
+.main_layout_header_inner {
+	width: 100%;
+}
+.logo_wrap {
+	margin-left: 3%;
+}
+.logout_wrap {
+	margin-right: 3%;
+}
+.ext_int_box {
+	width: 36%;
+}
+.task_details_wrap_left {
+	width: 100%;
+}
+.task_details_wrap_right {
+	float: left;
+	width: 100%;
+}
+.task_details_img_view {
+	float: left;
+}
+.task_details_img_view_small {
+	float: left;
+	margin-top: 5%;
+	width: 100%;
+}
+.td_field01 {
+	padding-top: 1%;
+}
+.task_details_wrap_left p {
+	padding-bottom: 3%;
+}
+.td_second_box {
+	margin-top: 4%;
+}
+.td_third_box {
+	margin-top: 4%;
+}
+.top_menu_inner_view {
+	width: 94%;
+}
+.dashboard_summary {
+	margin-top: 3%;
+	float: left
+}
+}
+
+@media screen and (max-width: 910px) {
+.top_menu_inner_view li a {
+	font-size: 13px;
+}
+.top_menu_inner_view li {
+	width: 152px;
+}
+.welcome_msg_wrap h2 {
+	font-size: 24px;
+}
+}
+
+@media screen and (max-width: 800px) {
+.dashboard_flow {
+	width: 100%;
+}
+.dashboard_summary {
+	width: 55%;
+}
+.task_completed, .task_pending {
+	margin-top: 1.5%;
+}
+.sub_menus_inner li {
+	border-bottom: medium none;
+	padding: 3% 0;
+}
+}
+
+@media screen and (max-width: 808px) {
+.top_menu_inner_view li {
+	margin-bottom: 5%;
+}
+.top_menu_inner_view li {
+	width: 189px;
+}
+}
+
+@media screen and (max-width: 603px) {
+.top_menu_inner_view li a {
+	font-size: 12px;
+}
+.top_menu_inner_view li {
+	width: 155px;
+}
+}
+
+@media screen and (max-width: 620px) {
+.task_details_fields span {
+	clear: both;
+	float: left;
+	margin-bottom: 1%;
+}
+.bottom_edited {
+	margin-bottom: 20%;
+}
+.delete_icon {
+	clear: none !important;
+	float: left !important;
+}
+}
+
+@media screen and (max-width: 580px) {
+.footer_layout_inner span {
+	text-align: center;
+	width: 100%;
+}
+.poweredBy p {
+	display: inline-block;
+	float: none;
+}
+.poweredBy p img {
+	vertical-align: -4px;
+}
+.footer_layout_inner span {
+	padding-left: 0%;
+	padding-right: 0%;
+}
+.poweredBy {
+	margin-top: 0 !important;
+}
+.signin_wrap h2 {
+	font-size: 21px;
+}
+.signin_box {
+	height: 300px;
+}
+.field_email {
+	margin-top: 30px;
+}
+.ext_int_box {
+	width: 87%;
+}
+.internal_Box {
+	margin-top: 6%;
+}
+.db_selections_fields {
+	margin-bottom: 6%;
+}
+.middle_inner_view h2 {
+	font-size: 19px;
+}
+.dashboard_summary {
+	width: 70%;
+}
+}
+
+@media screen and (max-width: 550px) {
+.logo_wrap {
+	margin-left: 0;
+	text-align: center;
+	width: 100%;
+}
+.logout_wrap {
+	margin-right: 0;
+	width: 100%;
+	margin-top: 0px;
+}
+.logout_wrap p {
+	color: #293541;
+	float: left;
+	padding-left: 0px;
+	padding-top: 1%;
+	text-align: center;
+	width: 100%;
+}
+.logout_wrapBox {
+	float: none;
+	margin-bottom: 2%;
+	margin-left: 0;
+	margin-top: 9%;
+	text-align: center;
+	border-bottom: none;
+}
+p.name_highlights {
+	color: #BF3328 !important;
+}
+}
+
+@media screen and (max-width: 530px) {
+.task_details_img_view {
+	width: 96%;
+}
+.dashboard_summary {
+	margin-bottom: 20%;
+}
+.summary_details {
+	margin: 8% 2% 10% 4%;
+}
+.styled-select .css-select {
+    width: 100% !important;
+}
+}
+
+@media screen and (max-width: 500px) {
+.ext_int_buttons {
+	margin: 2% 0 30%;
+}
+.db_txtbox {
+	padding: 0 4.1%;
+	width: 91%;
+}
+.db_title {
+	width: 15%;
+	margin-right: 6%;
+}
+.styled-select {
+	width: 70%;
+}
+.css-select {
+	width: 298px !important;
+}
+.radio_txt {
+	width: 75%;
+}
+.db_selections {
+	margin: 7% 0 3%;
+}
+.radio-select {
+	width: 100%;
+}
+.radio_btn01 {
+	float: left;
+	margin-bottom: 9%;
+	margin-right: 30px;
+}
+}
+
+@media screen and (max-width: 480px) {
+.welcome_msg_wrap h4 {
+	font-size: 14px;
+}
+.welcome_msg_wrap p {
+	font-size: 12px;
+}
+.dashboard_flow h4, .dashboard_summary h4 {
+	font-size: 14px;
+}
+.fh_header, .sd_task_title {
+	font-size: 12px;
+}
+.flow_details_fields {
+	font-size: 12px;
+}
+.task_percentege {
+	font-size: 20px;
+}
+.task_completed, .task_pending {
+	margin-top: 1%;
+}
+}
+
+@media screen and (max-width: 450px) {
+.logout_wrapBox {
+	margin-top: 12%;
+}
+}
+
+@media screen and (max-width: 495px) {
+.top_menu_inner_view li {
+	width: 145px;
+}
+}
+
+@media screen and (max-width: 465px) {
+.top_menu_inner_view li {
+	width: 145px;
+}
+.top_menu_inner_view li {
+	width: 172px;
+}
+}
+
+@media screen and (max-width: 400px) {
+.middle_inner_view h2 {
+	font-size: 18px;
+}
+.welcome_msg_wrap h4 {
+	font-size: 13px;
+}
+.fd01 {
+	width: 30%;
+}
+.fd02 {
+	width: 37%;
+}
+}
+
+@media screen and (max-width: 380px) {
+.dashboard_summary {
+	width: 85%;
+}
+.middle_inner_view h2 {
+	font-size: 15px;
+}
+.welcome_msg_wrap h4 {
+	font-size: 12px;
+}
+}
+
+@media screen and (max-width: 366px) {
+.top_menu_inner_view li {
+	width: 150px;
+}
+.sub_menus {
+	margin-right: 2%;
+}
+}
+
+@media screen and (max-width: 334px) {
+.fd02 {
+	width: 36%;
+}
+}
+
+@media screen and (max-width: 324px) {
+.fd02 {
+	width: 35%;
+}
+}
+
+@media screen and (max-width: 422px) {
+.sub_menus {
+	margin-left: -4%;
+}
+.sub_menus_toparrows {
+	margin-left: 40%;
+}
+}
+
+@media screen and (max-width: 480px) {
+.signin_wrap {
+	width: 75.4%;
+}
+.signin_txtbox {
+	clear: both;
+	text-align: center;
+	width: 100%;
+}
+.txtbox_field {
+	width: 77%;
+}
+.signin_btn .txtbox_field {
+	width: 86%
+}
+.signin_bottom {
+	width: 86%;
+}
+.txtbox_field {
+	float: none;
+	margin: 0;
+	margin-bottom: 20px;
+}
+.field_email {
+	margin-top: 30px;
+}
+.signin_wrap {
+	margin: 80px auto auto;
+}
+.forget_password .signin_box {
+	height: 240px;
+}
+.reset_password .back_to_login a {
+	margin-left: 7%;
+}
+.reset_password .signin_btn .txtbox_field {
+	font-size: 13px;
+}
+.reset_password .signin_wrap {
+	width: 98%;
+}
+.reset_password .signin_box {
+	height: 243px;
+}
+}
+
+@media screen and (max-width: 460px) {
+.bottom_edited {
+	margin-bottom: 30%;
+}
+.task_details_fields .db_txtbox {
+	width: 89%;
+}
+.td_field02 {
+	width: 75%;
+}
+.td_field02 h4 {
+	padding-left: 9%;
+}
+.bottom_edited p {
+	font-size: 12px;
+}
+}
+
+@media screen and (max-width: 440px) {
+.signin_bottom span {
+	float: left;
+	text-align: center;
+	width: 100%;
+}
+.forget_pwd {
+	float: right;
+	margin-top: 5%;
+}
+}
+
+@media screen and (max-width: 408px) {
+.signin_wrap h2 {
+	font-size: 18px;
+}
+.signin_wrap {
+	width: 90%;
+}
+.task_details_img_view {
+	width: 93%;
+}
+}
